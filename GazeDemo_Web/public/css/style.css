@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700;900&display=swap');
+</style>
+/*------------------------------ HEADER ------------------------------*/
+html, body {
+    height: 100%; /*外層高度100%*/
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100%; /*外層高度100%*/
+    margin-bottom: -50px; /*隨footer高度需做調整*/
+}
+.contant{
+    padding-bottom: 50px; /*避免文字超出瀏覽器時，內容區塊不會和footer打架*/
+}
+
+.footer{
+    height: 50px; /*設定footer本身高度*/
+    background-color: red;
+  
+}
+
+/****************************************/
+
+.top-header .navbar {
+	padding: 5px 0px;
+}
+
+.top-header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 20;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-size: auto 100%;
+    width: 100%;
+    /* margin: 0 5%; */
+}
+
+.top-header .navbar .navbar-collapse ul li a {
+	text-transform: uppercase;
+	font-size: 15px;
+	padding: 7px 20px;
+	position:relative;
+	font-weight: 800;
+	overflow: hidden;
+	color: #000;
+}
+
+a.navbar-brand {
+    left: 0;
+    position: relative;
+    margin-right: 980px;
+}
+
+a.navbar-brand img {
+    height: 80px;
+    margin-right: 10px;
+}
+
+.top-header .navbar .navbar-collapse ul li a.active {}
+.top-header .navbar .navbar-collapse ul li a:hover,
+.top-header .navbar .navbar-collapse ul li a:focus {
+	background: transparent;
+	color: #306cdb;
+}
+
+.top-header #navbarNav {
+    float: right;
+
+}
+
+/*------------------------------ title section ------------------------------*/
+
+#home {
+    margin-top: 100px;
+}
+
+/*------------------------------ title section ------------------------------*/
+
+.full {
+	float: left;
+	width: 100%;
+}
+
+section.inner_banner {
+    margin-top: 100px;
+    min-height: 50px;
+    background: #002147;
+}
+
+section.inner_banner h3 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    text-align: center;
+    line-height: 50px !important;
+    padding: 0;
+	color: #fff;
+}
+
+/*------------------------------ footer ------------------------------*/
+
+.footer_bottom {
+    background: #095a83;
+    padding: 15px 0;
+    position: fixed;  /* 置底 */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px; /* 設定固定高度 */
+    
+}
+
+.footer_bottom p.crp {
+    float: left;
+    margin: 0;
+    color: #fff;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+
+/*------------------------------ QnA Bot ------------------------------*/
+.bot {
+    border: none;
+    border-radius: 20px;
+    height: 200px;
+    width: 500px;
+    margin-left: 40%;
+    margin-top: 100px;
+    position: relative;
+}
+
+
+/*------------------------------ upload alert ------------------------------*/
+
+#vid_alert {
+    width: 21.3%;
+    margin-left: 39%;
+    position: relative;
+    margin-top: -120px;
+    font-size: large;
+    background-color: skyblue;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: rgb(4, 119, 119);
+}
+
+

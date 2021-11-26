@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Raleway', sans-serif;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.container:hover .top:before, .container:hover .top:after, .container:hover .bottom:before, .container:hover .bottom:after, .container:active .top:before, .container:active .top:after, .container:active .bottom:before, .container:active .bottom:after {
+  margin-left: 200px;
+  -webkit-transform-origin: -200px 50%;
+          transform-origin: -200px 50%;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.container:hover .center, .container:active .center {
+  opacity: 1;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+.top:before, .top:after, .bottom:before, .bottom:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 200vmax;
+  height: 200vmax;
+  top: 50%;
+  left: 50%;
+  margin-top: -100vmax;
+  -webkit-transform-origin: 0 50%;
+          transform-origin: 0 50%;
+  -webkit-transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+  z-index: 10;
+  opacity: 0.65;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+.top:before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background: #e46569;
+}
+
+.top:after {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  background: #ecaf81;
+}
+
+.bottom:before {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  background: #60b8d4;
+}
+
+.bottom:after {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+  background: #3745b5;
+}
+
+.center {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30px;
+  opacity: 0;
+  -webkit-transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  color: #333;
+  text-align: center;
+}
+
+.center input {
+  width: 100%;
+  padding: 15px;
+  margin: 5px;
+  border-radius: 1px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+button {
+        font-size: 20px;
+        font-family:monospace;
+        background-color:lightsalmon;
+        border: none;
+        border-radius: 10px;
+}
+P {
+        margin-bottom: 7px;
+        margin-top: 7px;
+}
+/*# sourceMappingURL=login.css.map */

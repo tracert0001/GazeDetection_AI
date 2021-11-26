@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIEN14-Project-Team3</title>
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../css/login.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="bottom">
+                <form name="form1" onsubmit="checkForm(); return false;">
+                    <div>
+                        <h2 class="center">AIEN14-Team3 Project<p>Please Sign In</p>
+                        <input type="text" placeholder="user" id="user_name" name="user_name" required>
+                        <input type="password" placeholder="password" id="user_password" name="user_password" required>
+                        <button type="submit">SIGN IN</button>
+                        </h2>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- ALL JS FILES -->
+    <%- include('parts/html-js') %>
+        <script>
+            function checkForm() {
+                $.post('', $(document.form1).serialize(), function (data) {
+                    console.log(data);
+                    if (data.success) {
+                        location.href = '/';
+                    } else {
+                        alert(data.error);
+                    }
+                }, 'json');
+            }
+        </script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+/* html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    cursor: none;
+} */
+.form-group{
+    margin-top: 25px;
+    font-size: 2em;
+    text-align: center;
+}
+.form-control{
+    width: 30%;
+    margin: auto;
+    background-color:#81C0C0;
+    border-color: cadetblue;
+    border-width: 3px;
+    border-radius: 10px;
+    font-size: large;
+    text-align: center;
+}
+
+body, html {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+canvas {
+	position: absolute;
+	width: 100%;
+	height: 39%;
+	/* background:#000; */
+	cursor: pointer;
+    /* margin-top: 40px; */
+    /* margin-right: auto ;  */
+}
+
+.btn {
+    background-color:#81C0C0;
+    border-radius: 12px;
+    border: none;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: -25px;
+}
+
+input[type=radio]:checked ~ .check {
+    border: 5px solid #FF5809;
+}
+  
+input[type=radio]:checked ~ .check::before{
+    background: #FF5809;
+}
+  
+input[type=radio]:checked ~ label{
+    color: #FF5809;
+}
+

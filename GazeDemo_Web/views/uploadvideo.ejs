@@ -1,0 +1,109 @@
+<%- include('parts/html-head') %>
+
+    <body>
+        <!-- Start header -->
+
+        <%- include('parts/menu') %>
+            <link rel="stylesheet" href="../css/upload.css" />
+
+            <!-- End header -->
+
+            <!-- section -->
+
+            <section class="inner_banner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="full">
+                                <h3>Upload Test Video</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- end section -->
+
+            <!-- section -->
+            <form id="url_form" name="url_form" onsubmit="checkForm(); return false;">
+            <!-- <form method="post" id="url_form"> -->
+
+                <div class="wrapp">
+                    <div class="contant" style="position: relative;">
+                        <div class="form-group">
+                            <label for="videoUrl" style="font-family:fantasy; font-size: 50px;">Video Url</label>
+                            <input type="text" class="form-control" id="videoUrl" name="videoUrl"
+                                placeholder="copy and paste a video url you wanted to upload here" required>
+                        </div>
+                        <div class="form-group">
+                            <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Cut
+                                video into 10s or 20s:</div>
+                            <div class="form-check form-check-inline"
+                                style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                <input class="form-check-input" type="radio" name="videolength" id="videolength"
+                                    value="10" required>
+                                <label class="form-check-label text-muted" for="inlineRadio1">10 seconds</label>
+                            </div>
+                            <div class="form-check form-check-inline"
+                                style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                            <input class="form-check-input" type="radio" name="videolength" id="videolength"
+                                value="20" required>
+                            <label class="form-check-label text-muted" for="inlineRadio2">20 seconds</label>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary"
+                                    style="position: relative;" value="submit" >Submit</button>
+                                    <div class='alert alert-danger' id='vid_alert'>
+                                        <p>text here</p>
+                                    </div>
+                            </div>
+                        </div>
+                             
+                </div>
+                <canvas></canvas>
+                </div>
+                </div>
+            </form>
+
+
+            <!-- end section -->
+
+            <!-- Start Footer -->
+
+            <%- include('parts/footer') %>
+
+                <!-- End Footer -->
+
+                <!-- ALL JS FILES -->
+                <%- include('parts/html-js') %>
+                    <script src="../js/upload.js"></script>
+                    
+                    <script>
+                    const info=$('#vid_alert');
+                    info.hide();
+
+                    function checkForm(){
+                        $.post('',$(document.url_form).serialize(),function(data){
+                        console.log(data.vid);
+                            if(data.vid){
+                                console.log('hi success:'+data.vid)
+                                info.removeClass('alert-danger').addClass('alert-success');
+                                info.html('您的影片將於30秒後處理完畢，請耐心等待。您的影片名稱為:'+data.vid);
+                                info.slideDown(); 
+                                setTimeout(function(){
+                                    location.href=`/dot_test`;
+                                },10000);
+                            }else{
+                                console.log('hi error')
+                                info.removeClass('alert-success').addClass('alert-danger');
+                                info.html(error);
+                                info.slideDown();
+                            }
+                        },'json');
+                    };
+                
+                    </script>
+
+    </body>
+
+    </html>

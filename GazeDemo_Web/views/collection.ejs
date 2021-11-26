@@ -1,0 +1,150 @@
+<%- include('parts/html-head') %>
+
+
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700&subset=latin-ext" rel="stylesheet">
+
+    <!-- Collection CSS -->
+    <link rel="stylesheet" href="../css/collection.css" />
+    <link rel="stylesheet" href="../css/item.css" />
+
+    <body>
+        <!-- Start header -->
+
+        <%- include('parts/menu') %>
+
+            <!-- End header -->
+
+
+            <!--Item slider text-->
+
+            <div class="container">
+                <div class=row id="slider-text">
+                    <div class="col-md-12" style="text-align: center;">
+                        <h2>NEW COLLECTION</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!--End Item slider text-->
+
+
+            <!--Item Detail-->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 product-image">
+                        <img class="active" src="../images/product/<%- itemlist[0][`name`] %>.jpg">
+                        <div class="col-md-6 title" id="activeDiv">
+                            <h1 class="name">
+                                <!-- <%- itemlist[0][`title`] %> -->
+                            </h1>
+                            <h2>
+                                 <!-- <%- itemlist[0][`price`] %> -->
+                            </h2>
+                            <div class="description">
+                                <p>
+                                    <!-- <%- itemlist[0][`description`] %> -->
+                                </p>
+                            </div>
+                            <button class="add-to-cart">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- <ul class="image-list">
+                          <li class="image-item"><img src="https://source.unsplash.com/W1yjvf5idqA"></li>
+                          <li class="image-item"><img src="https://source.unsplash.com/VgbUxvW3gS4"></li>
+                          <li class="image-item"><img src="https://source.unsplash.com/5WbYFH0kf_8"></li>
+                        </ul> -->
+
+            <!--End Item Detail-->
+
+
+            <!-- Item slider-->
+            <div class="container-fluid" style="margin-bottom: 100px; margin-top: 50px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="carousel carousel-showmanymoveone slide" id="itemslider">
+                            <div class="carousel-inner" id="test">
+                                
+
+                                
+
+                            </div>
+
+                            <div id="slider-control">
+                                <a class="left carousel-control" href="#itemslider" data-slide="prev"><img
+                                        src="https://cdn0.iconfinder.com/data/icons/website-kit-2/512/icon_402-512.png"
+                                        alt="Left" class="img-responsive"></a>
+                                <a class="right carousel-control" href="#itemslider" data-slide="next"><img
+                                        src="http://pixsector.com/cache/81183b13/avcc910c4ee5888b858fe.png" alt="Right"
+                                        class="img-responsive"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- End Item slider -->
+
+            <div><br></div> <!-- 調整版面用 -->
+
+            <!-- Start Footer -->
+
+            <%- include('parts/footer') %>
+
+            <!-- End Footer -->
+
+            <!-- ALL JS FILES -->
+            <%- include('parts/html-js') %>
+            <script src="../js/collection.js"></script>
+            <script>
+                const itemlist = <%- JSON.stringify(itemlist) %>;
+                
+                window.onload=function(){
+                    $('h1.name').text(itemlist[0].title);
+                    $('#activeDiv > h2').text('$' + itemlist[0].price);
+                    $('div.description >p').html(itemlist[0].description);
+                }
+
+                function addDiv() {
+                    // console.log('55');
+                    let str1 = '';
+                    // const item_count=
+                    // console.log(item_count)item active
+                    let flag =0;
+                    for (const item of itemlist) {
+                        if(flag!=0){
+                            $('div #test').append(
+                                `<div class="">
+                                    <div class="col-xs-12 col-sm-6 col-md-2 image-list">
+                                        <img src="../images/product/${item.name}.jpg" class="img-block center-block">
+                                        <h4 class="text-center">${item.title}</h4>
+                                        <h5 class="text-center">$${item.price}</h5>
+                                        <p style="display:none">${item.description}</p>
+                                        <a href="">
+                                            <p>View More</p>
+                                        </a>
+                                    </div>
+                                </div>`);
+                        }
+                        flag++;
+                    }
+                }
+                addDiv();
+            </script>
+            <script src="../js/item.js"></script>
+    </body>
+
+    </html>

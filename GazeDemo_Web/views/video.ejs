@@ -1,0 +1,231 @@
+<%- include('parts/html-head') %>
+
+<body>
+    <!-- Start header -->
+
+    <%- include('parts/menu') %>
+
+    <!-- End header -->
+
+    <!-- section -->
+
+    <section class="inner_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="full">
+                        <h3>Video</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end section -->
+
+    <!-- section -->
+    <main role="main">
+        <div class="player">
+            <video controls id="vdoplayer" >
+                <!-- <source src="video_/IKEA.mp4" type="video/mp4" > -->
+                <source src="../video_/<%= videopath %>" type="video/mp4" >
+                <!-- fallback content here -->
+            </video>
+            <!-- right div -->
+            
+        </div>
+        <div id="rightDiv">
+            <h2>已發現的商品</h2>
+            <div></div>
+        </div>
+    </main> 
+    <!-- end section -->
+    
+
+    <!-- Start Footer -->
+    <%- include('parts/footer') %>
+    <!-- End Footer -->
+
+    <!-- ALL JS FILES -->
+    <%- include('parts/html-js') %>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.js.map" crossorigin="anonymous"></script> -->
+    <script src="../js/MagicTrickbyCCL.js" language="jscript"></script>
+
+    
+
+    <script type="text/javascript" src="../js/searchgazer.js"></script>
+    <script>
+    const trace = <%- JSON.stringify(tracetb) %>;
+    const videopath = <%- JSON.stringify(videopath) %>;
+    const num_frm = <%- JSON.stringify(totalfrm) %>;
+    var objtable = {};
+    const threshold = num_frm/60;    // num_frm/80;
+    const target = ['2','39','40','41','56','57','59','60', '63','67'];
+    var showed = [];
+
+
+    function id2item(id,lan='en'){
+        if(lan == 'ch'){
+            const iimap ={
+            '2':'汽車',
+            '39':'瓶子/寶特瓶',
+            '40':'酒杯',
+            '41':'杯子',
+            '56':'椅子',
+            '57':'沙發',
+            '59':'床',
+            '60':'餐桌',
+            '63':'筆電',
+            '67':'手機'
+            };
+            return iimap[id];
+        }
+        const iimap ={
+            '2':'Car',
+            '39':'Bottle',
+            '40':'Wine_glass',
+            '41':'Cup',
+            '56':'Chair',
+            '57':'Couch',
+            '59':'Bed',
+            '60':'Dining_table',
+            '63':'Laptop',
+            '67':'Cell_phone'
+        };
+        return iimap[id];
+    }
+    let count_pic = 0;
+	function getGazePoints(data,frame){
+        
+        if (trace[frame].length>1){
+            for (const [i, objlist] of trace[frame].entries()){
+                if(i==0) continue;
+                
+                let obj = objlist.split('-');
+                // obj[0] = class; obj[1]=x; obj[2]=y;obj[3]=w;obj[4]=h;obj[5]=id;
+                
+                // tuning
+                obj[1] = parseInt(obj[1],10);
+                obj[2] = parseInt(obj[2],10);
+                obj[3] = parseInt(obj[3],10);
+                obj[4] = parseInt(obj[4],10);
+                if(video_isfull){           // 1280 to 1920
+                    obj[1] = obj[1]*1.5;
+                    obj[2] = obj[2]*1.5;
+                    obj[3] = obj[3]*1.5;
+                    obj[4] = obj[4]*1.5;
+                }else{
+                    obj[1] += 200;
+                    obj[2] += 150;
+                }
+                console.log([obj[0],obj[1],obj[2],obj[3],obj[4]]);
+
+                if ( target.includes(obj[0]) && (data.x - obj[1])<=obj[3] && (data.x >= obj[1]) && (data.y - obj[2])<=obj[4] && (data.y >= obj[2])){
+                    let cls_id = obj[0];
+                    if(objtable[cls_id]){
+                        objtable[cls_id]+=1;
+                        // 
+                        if(objtable[cls_id]>=threshold){
+                            toastr["success"](id2item(cls_id,'ch'), "看到了商品：");
+                            if (!showed.includes(cls_id)){
+                                console.log('item captured!!!!');
+                                
+                                console.log(cls_id);
+                                $('#rightDiv>div').append(
+                                    `<div>
+                                        <span>${id2item(cls_id,'ch')}</span>
+                                        <img src="/images/product/${id2item(cls_id)}.jpg">
+                                    </div>`);
+                                if(count_pic>4){
+                                    $('#rightDiv > div > div').animate({
+                                        "width": "200px",
+                                        "margin-left": 0
+                                    },"slow")
+                                }
+                                objtable[cls_id] -= threshold;
+                                showed.push(cls_id);
+                                count_pic++;
+                            }
+                            objtable[cls_id]=0;
+                        }
+                    }else{
+                        objtable[cls_id]=1;
+                    }
+                }
+		    }
+        }
+	}
+
+    function list2query(list){
+        return list.join(',');
+    }
+	
+    
+    window.onload = function() {
+        webgazer.setRegression('ridge') /* currently must set regression and tracker */
+        .setTracker('clmtrackr')
+        .setGazeListener(function(data, clock, frm_idx) {
+           if(data!=null)
+
+            console.log('frame: '+frm_idx);
+            getGazePoints(data,frm_idx);
+            console.log(data); /* data is an object containing an x and y key which are the x and y prediction coordinates (no bounds limiting) */
+            console.log(clock); /* elapsed time in milliseconds since webgazer.begin() was called */
+        })
+        .begin()
+        .showPredictionPoints(true); /* shows a square every 100 milliseconds where current prediction is */
+
+        var width = 320;
+        var height = 240;
+        var topDist = '0px';
+        var leftDist = '0px';
+        
+        var setup = function() {
+            var video = document.getElementById('webgazerVideoFeed');
+            video.style.display = 'hidden';
+            video.style.position = 'absolute';
+            video.style.top = topDist;
+            video.style.left = leftDist;
+            video.width = width;
+            video.height = height;
+            video.style.margin = '0px';
+
+            webgazer.params.imgWidth = width;
+            webgazer.params.imgHeight = height;
+        };
+
+        function checkIfReady() {
+            if (webgazer.isReady()) {
+                setup();
+            } else {
+                setTimeout(checkIfReady, 100);
+            }
+        }
+        setTimeout(checkIfReady,100);
+
+        window.onbeforeunload = function() {
+            webgazer.end();
+        };
+
+    };
+    $('video').on('ended',function(){
+        webgazer.pause();
+        console.log(objtable);
+        console.log('Video has ended!');
+        closeFullscreen()
+        setTimeout(function(){
+            if(showed.length>0){
+                window.location.href='/collection/'+list2query(showed);
+            }else{
+                swal("您沒有發現任何商品，再試一次嗎？ =) ")
+                .then((value) => {
+                window.location.href='dot_test';
+                });
+            }
+        },2000);
+    });
+    </script> 
+</body>
+
+</html>
