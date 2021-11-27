@@ -1,5 +1,5 @@
-# GazeDetection_implementation
-Integration of gaze detection and object tracking
+# Gaze Detection & Object Tracking
+This project is the integration of gaze detection and object tracking
 
 ## Getting started
 Using Node.js to display this work
