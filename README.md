@@ -1,5 +1,5 @@
 # GazeDetection_implementation
-Implementation of gaze tracking and demo
+Integration of gaze detection and object tracking
 
 ## Getting started
 Using Node.js to display this work
