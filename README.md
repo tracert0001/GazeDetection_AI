@@ -6,11 +6,13 @@ Using Node.js to display this work
 
 
 0. !cd GazeDemo_Web
+   
    Create .env file to save your database access info and import project.sql file to your database. 
 
 1. !npm install
 
 2. !node/nodemon
+   
    To run server
 
 
