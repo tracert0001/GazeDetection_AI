@@ -7,10 +7,10 @@ Using Node.js to display this work
 
 0. `cd GazeDemo_Web`
    
-   Create .env file to save your database access info and import `project.sql` file to your schema. 
+   Create `.env` file to save your database access info and import `project.sql` file to your schema. 
    
-   .env
-   ```
+   `.env`
+   ```py
    PORT=3000
 
    DB_HOST=localhost
