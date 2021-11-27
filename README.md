@@ -1,6 +1,6 @@
-# Predicting Customer Demand by Using Gaze Detection and Object Tracking
+# Predicting Customer Demand by Using Gaze Detecting and Object Tracking
 
-This project is the integration of gaze detection and object tracking.
+This project is the integration of gaze detecting and object tracking.
 
 Predict the gaze location and find out what object the user is looking at.
 
