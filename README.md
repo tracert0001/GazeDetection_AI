@@ -1,6 +1,9 @@
 # Gaze Detection & Object Tracking
 This project is the integration of gaze detection and object tracking.
+
 To predict the gaze location and find out what object the user is looking at.
+
+
 
 ## Getting started
 Using Node.js to display this work
