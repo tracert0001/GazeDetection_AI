@@ -1,4 +1,4 @@
-# Gaze Detection & Object Tracking
+# Predicting Customer Demand by Using Gaze Detection and Object Tracking
 
 This project is the integration of gaze detection and object tracking.
 
