@@ -39,7 +39,7 @@ Using Node.js to display this work
 
 
 ## Upload your own video
-It needs ONLY a youtube link to customize your own test.
+It needs ONLY a youtube link to customize your own video.
 ![custom](https://user-images.githubusercontent.com/89000685/143686601-8083df56-b942-4e46-8700-c89aa498039c.gif)
 
 
