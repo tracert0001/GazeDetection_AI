@@ -2,12 +2,12 @@
 
 This project is the integration of gaze detecting and object tracking.
 
-Predict the gaze location and find out what object the user is looking at.
+Track gaze by using webcam and mapping eye data on the display screen. Identify individual items through object detecting and tracking model. Combine these two methods in order to predict customer demand and analysis screen-watching behavior.
 
 
 
 ## Getting started
-Using Node.js to display this work
+Using Node.js to present this work
 
 
 0. `cd GazeDemo_Web`
@@ -26,8 +26,7 @@ Using Node.js to display this work
 
 1. `npm install`
 
-2. `node .` or 
-   `nodemon`
+2. `node .`
    
    To run server
 
