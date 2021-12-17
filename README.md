@@ -37,7 +37,7 @@ Using Node.js to present this work
 ## Demo
 ![main(1)](https://user-images.githubusercontent.com/89000685/143686673-dbd86f98-edfa-45b0-84b4-7906090b6a72.gif)
 
-![plot](https://github.com/tracert0001/GazeDetection_implementation/blob/f7c9ebe95e48dc9c100feac8adc076a1f49b524e/GazeDemo_Web/public/images/18626.gif)
+![main](https://github.com/tracert0001/GazeDetection_AI/blob/e584baf50792c54969c4465635d4f4e0d8c7d3bf/GazeDemo_Web/public/images/18626.gif)
 
 ## Customized video
 It needs only a youtube link to upload and use your own video.
